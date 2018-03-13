@@ -1,7 +1,7 @@
 # RappByMacwan
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
-Thi project is a study project from "Learning Angular LiveLessons Covering Angular 2 and Angular 4, Second Edition" by Marc Wandschneider
+This project is a study project from "Learning Angular LiveLessons Covering Angular 2 and Angular 4, Second Edition" by Marc Wandschneider
 
 ## Development server
 
