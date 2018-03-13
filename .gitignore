@@ -2,7 +2,9 @@
 
 # compiled output
 /dist
+/dist-server
 /tmp
+/out-tsc
 
 # dependencies
 /node_modules
@@ -26,7 +28,7 @@
 # misc
 /.sass-cache
 /connect.lock
-/coverage/*
+/coverage
 /libpeerconnection.log
 npm-debug.log
 testem.log
@@ -36,7 +38,6 @@ testem.log
 /e2e/*.js
 /e2e/*.map
 
-#System Files
+# System Files
 .DS_Store
 Thumbs.db
-package-lock.json
