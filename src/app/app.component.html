@@ -1,14 +1,1 @@
-<h1>Рецепты</h1>
-
-<div *ngFor="let recipe of recipes" class="panel panel-default recipe" style="max-width: 500px">
-	<div class="panel-heading">
-		<h3 class="panel-title">{{ recipe.title }}</h3>
-	</div>
-	<div class="panel-body">
-		<div class="cover-photo-holder">
-			<img src="{{ recipe.cover_photo ? recipe.cover_photo: '/assets/emptybowl.jpg'}}"
-			/>
-		</div>
-		<p>{{ recipe.description }}</p>
-	</div>
-</div>
+<app-recipe-list></app-recipe-list>

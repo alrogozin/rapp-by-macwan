@@ -1,3 +1,4 @@
-<p>
-  recipe-list works!
-</p>
+<h1>Рецепты</h1>
+<div *ngFor="let recipe of recipes">
+  <app-recipe-summary [recipe]="recipe"></app-recipe-summary>
+</div>

@@ -8,11 +8,4 @@ import { Recipe } from './model/recipe';
 })
 
 export class AppComponent {
-  recipes: Recipe[];
-  constructor() {
-    this.recipes = [
-      new Recipe('Блинчики', 'Любимые блинчики на молоке и масле.', null, null, null),
-      new Recipe('Шашлык', 'Из свинной шейки на углях.', null, null, null),
-    ];
-  }
 }
