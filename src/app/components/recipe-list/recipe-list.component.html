@@ -1,4 +1,54 @@
 <h1>Рецепты</h1>
-<div *ngFor="let recipe of recipes">
-  <app-recipe-summary [recipe]="recipe"></app-recipe-summary>
+<app-recipe-summary 
+  *ngFor="let recipe of recipes" 
+  [recipe]="recipe">
+</app-recipe-summary>
+
+<div style="clear: both"></div>
+<div class="newrecipe panel panel-default" style="max-width: 700px;">
+  <div class="panel-heading">
+    <h4>Новый рецепт</h4>
+  </div>
+  <div class="panel-body">
+      <div class="input-group">
+        <input 
+          style="width: 400px;" 
+          [(ngModel)] = "recipe_in_progress.title"
+          type="text"
+          class="form-control"
+          placeholder="Название рецепта"
+          name="title"/>
+      </div>
+      <div class="input-group">
+        <textarea 
+          style="width: 400px;"
+          [(ngModel)] = "recipe_in_progress.description"
+          rows="5"
+          class="form-control"
+          placeholder="Описание"
+          name="description">
+        </textarea>
+      </div>
+      <div class="input-group">
+        <input 
+          type="text"
+          [(ngModel)] = "recipe_in_progress.feeds_this_many"
+          class="form-control"
+          placeholder="На сколько человек"
+          name="feeds_this_many"/>
+        <span class="input-group-addon">человек</span>
+      </div>
+      <div class="input-group">
+        <input 
+          type="text"
+          [(ngModel)] = "recipe_in_progress.preporation_time"
+          class="form-control"
+          placeholder="Время приготовления"
+          name="preporation_time"/>
+        <span class="input-group-addon">минут</span>
+      </div>
+      <div class="input-group">
+        <input type="button" value="Добавить рецепт" (click) ="addRecipeClecked()"/>
+      </div>
+    </div>
 </div>
