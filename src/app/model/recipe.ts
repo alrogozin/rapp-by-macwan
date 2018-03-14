@@ -26,8 +26,7 @@ export class Recipe {
 					cp: string,
 					feeds: number,
 					pt: number
-				)
-	{
+				) {
 		this.title 				= t;
 		this.description 		= d;
 		this.ingredients 		= ingr;

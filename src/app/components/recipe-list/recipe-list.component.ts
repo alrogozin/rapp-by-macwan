@@ -12,6 +12,7 @@ export class RecipeListComponent {
 
   recipes: Recipe[];
   recipe_in_progress: Recipe;
+  
   constructor() {
 
     this.recipe_in_progress = Recipe.createBlank();
@@ -21,12 +22,18 @@ export class RecipeListComponent {
       new Recipe('Шашлык', 'Из свинной шейки на углях.', null, null, null, 2, 120),
       new Recipe('Баранина тушенная с картошкой', 'Баранина кусками с крупными кусками картошки, лука и маркови, запеченная в духовки с бульоном из бараньей косточки со специями.', null, null, null, 6, 360),
     ];
+   
   }
 
   public addRecipeClecked(){
     console.log(JSON.stringify(this.recipe_in_progress, null, 2));
     this.recipes.unshift(this.recipe_in_progress);
     this.recipe_in_progress = Recipe.createBlank();
+  }
+
+  public zoomInOutRecipe(recipe) {
+    console.log('opanki');
+    console.log(JSON.stringify(recipe, null, 2));
   }
 
 }

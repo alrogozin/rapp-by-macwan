@@ -1,7 +1,9 @@
 <h1>Рецепты</h1>
 <app-recipe-summary 
   *ngFor="let recipe of recipes" 
-  [recipe]="recipe">
+  [recipe]="recipe"
+  (zoomIn) = "zoomInOutRecipe(recipe)"
+>
 </app-recipe-summary>
 
 <div style="clear: both"></div>
@@ -9,6 +11,7 @@
   <div class="panel-heading">
     <h4>Новый рецепт</h4>
   </div>
+  
   <div class="panel-body">
       <div class="input-group">
         <input 
