@@ -1,0 +1,33 @@
+<p><a (click)="goBackButtonPressed()" style="cursor: pointer">Go Back</a></p>
+<div 
+  class="recipe panel panel-default"
+>
+  <div class="panel-heading">
+    <h3 class="panel-title">{{ recipe.title }}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="cover-photo-holder">
+      <img src="{{ recipe.cover_photo ? recipe.cover_photo: '/assets/emptybowl.jpg'}}"
+      />
+    </div>
+    <p>{{ recipe.description }}</p>
+    <div>
+      <div class="data-title">Время:</div>
+      <div>{{ recipe.preporation_time }}</div>
+      <div class="data-title">На (человек):</div>
+      <div>{{ recipe.feeds_this_many }}</div>
+    </div>
+    
+    <h4>Состав</h4>
+    <ul>
+      <li *ngFor="let ingredient of recipe.ingredients">
+        {{ ingredient.ingredient }} ({{ ingredient.measure }})
+      </li>
+    </ul>
+    
+    <h4>Инструкции</h4>
+    <ol>
+      <li *ngFor="let instr of recipe.instructions">{{ instr.instruction }}</li>
+    </ol>
+  </div>
+</div>

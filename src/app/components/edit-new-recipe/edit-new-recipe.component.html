@@ -1,0 +1,61 @@
+<div style="clear: both"></div>
+<div class="newrecipe panel panel-default" style="max-width: 700px;">
+  <div class="panel-heading">
+    <h4>Новый рецепт</h4>
+  </div>
+  
+  <div class="panel-body">
+      <div class="input-group">
+        <input 
+          style="width: 400px;" 
+          [(ngModel)] = "recipe_in_progress.title"
+          type="text"
+          class="form-control"
+          placeholder="Название рецепта"
+          name="title"/>
+      </div>
+      <div class="input-group">
+        <textarea 
+          style="width: 400px;"
+          [(ngModel)] = "recipe_in_progress.description"
+          rows="5"
+          class="form-control"
+          placeholder="Описание"
+          name="description">
+        </textarea>
+      </div>
+      <div class="input-group">
+        <input 
+          type="text"
+          [(ngModel)] = "recipe_in_progress.feeds_this_many"
+          class="form-control"
+          placeholder="На сколько человек"
+          name="feeds_this_many"/>
+        <span class="input-group-addon">человек</span>
+      </div>
+      <div class="input-group">
+        <input 
+          type="text"
+          [(ngModel)] = "recipe_in_progress.preporation_time"
+          class="form-control"
+          placeholder="Время приготовления"
+          name="preporation_time"/>
+        <span class="input-group-addon">минут</span>
+      </div>
+      <!-- Ingredients -->
+      <div class="form-group">
+          <label>Состав</label>
+          <div *ngFor="let ingredient of recipe_in_progress.ingredients; let i = index;">
+            <input style="width: 40%;" type="text" [(ngModel)]="recipe_in_progress.ingredients[i].ingredient" placeholder="ingredient"/>
+            <input style="width: 40%;" type="text" [(ngModel)]="recipe_in_progress.ingredients[i].measure" placeholder="measure"/>
+          </div>
+          <div class="add-ingredient">
+            <input type="button" value="Добавить" (click)="addIngredientPressed()" style="width: 80px;"/>
+          </div>
+      </div>
+
+      <div class="input-group">
+        <input type="button" value="Добавить рецепт" (click) ="addRecipePressed()"/>
+      </div>
+    </div>
+</div>

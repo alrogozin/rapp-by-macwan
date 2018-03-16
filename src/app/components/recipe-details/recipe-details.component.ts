@@ -1,23 +1,23 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { NgModule } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { Recipe } from '../../model/recipe';
+import { Recipe } from './../../model/recipe';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Location } from '@angular/common';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
-  selector: 'app-recipe-list',
-  templateUrl: './recipe-list.component.html',
-  styleUrls: ['./recipe-list.component.css']
+  selector: 'app-recipe-details',
+  templateUrl: './recipe-details.component.html',
+  styleUrls: ['./recipe-details.component.css']
 })
-export class RecipeListComponent {
 
+export class RecipeDetailsComponent implements OnInit {
+
+  recipe: Recipe;
   recipes: Recipe[];
-  recipe_in_progress: Recipe;
-
-  constructor(private router: Router) {
-
-    this.recipe_in_progress = Recipe.createBlank();
-
+  constructor(
+      private route: ActivatedRoute,
+      private location: Location
+    ) {
     this.recipes = [
       Recipe.recipeFromJSON(
         {
@@ -43,7 +43,7 @@ export class RecipeListComponent {
         'feeds_this_many': 4,
         'preporation_time': 60,
         'cover_photo': null,
-        'keywords': ['блинчики', 'завтрак']
+        'keywords': ['блинчики', 'завтрак'],
       }),
       Recipe.recipeFromJSON({
         'id': 2,
@@ -70,26 +70,27 @@ export class RecipeListComponent {
         'cover_photo': null,
         'keywords': ['блинчики', 'завтрак']
       },
-    )
+    ),
     ];
   }
 
-  public addRecipeClecked() {
-    console.log(JSON.stringify(this.recipe_in_progress, null, 2));
-    this.recipes.unshift(this.recipe_in_progress);
-    this.recipe_in_progress = Recipe.createBlank();
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+        this.recipe = this.findRecipeById(parseInt(params.get('recipe_id'), 10));
+    });
   }
 
-  public zoomInOutRecipe(recipe) {
-    console.log('opanki');
-    console.log(JSON.stringify(recipe, null, 2));
+  findRecipeById(id: number): Recipe {
+      for (const recipe of this.recipes) {
+        if (recipe.id === id) {
+          return recipe;
+        }
+      }
+      return null;
   }
 
-  userClickedOnRecipe(recipe_id): void {
-    this.router.navigateByUrl('recipes/' + recipe_id);
+  goBackButtonPressed(): void {
+    this.location.back();
   }
 
-  addRecipePressed(): void {
-    this.router.navigateByUrl('/editnewrecipe');
-  }
 }

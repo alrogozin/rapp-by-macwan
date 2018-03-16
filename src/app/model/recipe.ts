@@ -1,7 +1,6 @@
 export interface IIngredient {
 	ingredient: string;
 	measure: string;
-	remark: string;
 }
 
 export interface IInstruction {
@@ -43,7 +42,7 @@ export class Recipe {
 	}
 
 	public static createBlank(): Recipe {
-		return new Recipe(-1, '', '', null, null, 1, 1, null, null);
+		return new Recipe(-1, '', '', [], [], 1, 1, null, null);
 	}
 
 	  public static recipeFromJSON(obj: any): Recipe {
