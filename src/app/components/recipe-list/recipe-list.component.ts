@@ -13,10 +13,14 @@ import { Recipe } from '../../model/recipe';
 export class RecipeListComponent implements OnInit {
 
   recipes: Recipe[];
+  recipe_loaded: boolean;
 
   ngOnInit() {
     this.recipe_service.getAllRecipes()
-      .then((recipes) => this.recipes = recipes);
+      .then((recipes) => {
+        this.recipes = recipes;
+        this.recipe_loaded = true;
+      });
   }
   constructor(private router: Router, private recipe_service: RecipeService) {
   }

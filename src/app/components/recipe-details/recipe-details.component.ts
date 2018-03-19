@@ -1,3 +1,4 @@
+import { RecipeService } from './../../services/recipe.service';
 import { Recipe } from './../../model/recipe';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -13,80 +14,26 @@ import 'rxjs/add/operator/switchMap';
 export class RecipeDetailsComponent implements OnInit {
 
   recipe: Recipe;
-  recipes: Recipe[];
+  recipe_loaded: boolean;
+
   constructor(
       private route: ActivatedRoute,
-      private location: Location
+      private location: Location,
+      private recipe_service: RecipeService
     ) {
-    this.recipes = [
-      Recipe.recipeFromJSON(
-        {
-        'id': 1,
-        'title': 'Блинчики',
-        'description': 'Блинчики утренние на молоке и масле',
-        'ingredients': [
-          {'ingredient': 'молоко', 'measure': '600 гр'},
-          {'ingredient': 'яйца', 'measure': '3 шт'},
-          {'ingredient': 'мука', 'measure': '300 гр'},
-          {'ingredient': 'сахар', 'measure': '2 ч.л.'},
-          {'ingredient': 'соль', 'measure': '1 щепотка'},
-          {'ingredient': 'масло', 'measure': '2 ст.л.'},
-        ],
-        'instructions': [
-          {'instruction': 'Разбить и взболтать яйца', 'photo': null},
-          {'instruction': 'Добавить соль и сахар, смешать', 'photo': null},
-          {'instruction': 'Молоко подогреть и влить в яйца', 'photo': null},
-          {'instruction': 'Добавить муку и тщательно перемешать', 'photo': null},
-          {'instruction': 'Влить масло', 'photo': null},
-          {'instruction': 'Дать постоять минут 20', 'photo': null}
-        ],
-        'feeds_this_many': 4,
-        'preporation_time': 60,
-        'cover_photo': null,
-        'keywords': ['блинчики', 'завтрак'],
-      }),
-      Recipe.recipeFromJSON({
-        'id': 2,
-        'title': 'Шашлык',
-        'description': 'Из свинины на углях',
-        'ingredients': [
-          {'ingredient': 'молоко', 'measure': '600 гр'},
-          {'ingredient': 'яйца', 'measure': '3 шт'},
-          {'ingredient': 'мука', 'measure': '300 гр'},
-          {'ingredient': 'сахар', 'measure': '2 ч.л.'},
-          {'ingredient': 'соль', 'measure': '1 щепотка'},
-          {'ingredient': 'масло', 'measure': '2 ст.л.'},
-        ],
-        'instructions': [
-          {'instruction': 'Разбить и взболтать яйца', 'photo': null},
-          {'instruction': 'Добавить соль и сахар, смешать', 'photo': null},
-          {'instruction': 'Молоко подогреть и влить в яйца', 'photo': null},
-          {'instruction': 'Добавить муку и тщательно перемешать', 'photo': null},
-          {'instruction': 'Влить масло', 'photo': null},
-          {'instruction': 'Дать постоять минут 20', 'photo': null}
-        ],
-        'feeds_this_many': 4,
-        'preporation_time': 60,
-        'cover_photo': null,
-        'keywords': ['блинчики', 'завтрак']
-      },
-    ),
-    ];
   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
-        this.recipe = this.findRecipeById(parseInt(params.get('recipe_id'), 10));
+        const recipe_id = parseInt(params.get('recipe_id'), 10);
+        this.recipe_service.getRecipeById(recipe_id)
+          .then((recipe) => {
+            this.recipe = recipe;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     });
-  }
-
-  findRecipeById(id: number): Recipe {
-      for (const recipe of this.recipes) {
-        if (recipe.id === id) {
-          return recipe;
-        }
-      }
-      return null;
   }
 
   goBackButtonPressed(): void {

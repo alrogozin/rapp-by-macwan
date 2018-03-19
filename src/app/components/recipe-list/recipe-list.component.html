@@ -6,6 +6,12 @@
   />
 </div>
 <h1>Рецепты</h1>
+<p *ngIf="!recipe_loaded" style="color: brown">
+    Loading recipes, please wait a moment...
+</p>
+<p *ngIf="recipe_loaded && (!recipes || !recipes.length)">
+  There are no recipes ... 
+</p>
 <app-recipe-summary 
   *ngFor="let recipe of recipes" 
   [recipe]="recipe"
