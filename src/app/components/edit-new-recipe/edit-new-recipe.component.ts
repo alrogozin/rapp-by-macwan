@@ -11,24 +11,38 @@ export class EditNewRecipeComponent implements OnInit {
   recipe_in_progress: Recipe;
 
   constructor() {
-    this.recipe_in_progress = Recipe.createBlank();
-    // this.recipe_in_progress.ingredients.push({ingredient: 'i1', measure: 'm1'});
-    // this.recipe_in_progress.ingredients.push({ingredient: 'i2', measure: 'm2'});
+
   }
 
   ngOnInit() {
+    this.recipe_in_progress = Recipe.createBlank();
   }
 
   addRecipePressed(): void {
   }
 
   addIngredientPressed(): void {
-    // console.log(JSON.stringify(this.recipe_in_progress, null, 2));
     if (!this.recipe_in_progress.ingredients) {
       this.recipe_in_progress.ingredients = [{ingredient: null, measure: null}];
     } else {
       this.recipe_in_progress.ingredients.push({ingredient: null, measure: null});
     }
+  }
+
+  removeIngredientAtIndex(i: number): void {
+    this.recipe_in_progress.ingredients.splice(i, 1);
+  }
+
+  addInstructionPressed(): void {
+    if (!this.recipe_in_progress.instructions) {
+      this.recipe_in_progress.instructions = [{instruction: null, photo: null];
+    } else {
+      this.recipe_in_progress.instructions.push({instruction: null, photo: null});
+    }
+  }
+
+  removeInstructionAtIndex(i: number): void {
+    this.recipe_in_progress.instructions.splice(i, 1);
   }
 
 }

@@ -1,3 +1,36 @@
+div.cover-photo-holder img {
+	width: 300px;
+	height: 300px;
+	margin: 5px;
+}
+
+div.newrecipe {
+	max-wieght: 500px;
+}
+
 div.input-group {
 	margin: 10px 0;
+	width: 100%;
+}
+
+div.ingredient {
+	margin-bottom: 7px;
+}
+
+div.ingredient input.form-control {
+	width: 100px;
+	display: inline;
+}
+
+div.instruction input.form-control {
+	width: 60px;
+	display: inline;
+}
+
+div.instruction {
+	margin-bottom: 7px;
+}
+div.ingredient a, div.instruction a {
+	cursor: pointer;;
+	font-size: 80%
 }

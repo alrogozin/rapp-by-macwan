@@ -1,3 +1,4 @@
+import { RecipeService } from './services/recipe.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -41,7 +42,7 @@ import { EditNewRecipeComponent } from './components/edit-new-recipe/edit-new-re
       },
     ])
   ],
-  providers: [],
+  providers: [RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
