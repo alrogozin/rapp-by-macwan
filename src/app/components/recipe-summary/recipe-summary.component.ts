@@ -24,7 +24,6 @@ export class RecipeSummaryComponent {
 
   userClicked() {
     this.userClick.emit(this.recipe.id);
-    console.log('clicked:', this.recipe.id);
   }
 
 }

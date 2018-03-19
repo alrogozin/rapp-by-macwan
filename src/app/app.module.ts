@@ -9,6 +9,7 @@ import { RecipeListComponent } from './components/recipe-list/recipe-list.compon
 import { RecipeSummaryComponent } from './components/recipe-summary/recipe-summary.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { EditNewRecipeComponent } from './components/edit-new-recipe/edit-new-recipe.component';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { EditNewRecipeComponent } from './components/edit-new-recipe/edit-new-re
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     RouterModule.forRoot([
       {
         path: 'recipes',
