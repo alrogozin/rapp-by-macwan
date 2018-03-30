@@ -15,12 +15,15 @@ export class RecipeDetailsComponent implements OnInit {
 
   recipe: Recipe;
   recipe_loaded: boolean;
+  load_error: boolean;
+  error_text: string;
 
   constructor(
       private route: ActivatedRoute,
       private location: Location,
       private recipe_service: RecipeService
     ) {
+      this.load_error = false;
   }
 
   ngOnInit(): void {
@@ -31,7 +34,9 @@ export class RecipeDetailsComponent implements OnInit {
             this.recipe = recipe;
           })
           .catch((err) => {
-            console.log(err);
+            this.load_error = true;
+            const body = JSON.parse(err.body);
+            this.error_text = body.message;
           });
     });
   }

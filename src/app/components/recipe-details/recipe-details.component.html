@@ -1,7 +1,19 @@
-<p><a (click)="goBackButtonPressed()" style="cursor: pointer">Go Back</a></p>
-<p *ngIf="!recipe">
+<div *ngIf="!load_error">
+    <p><a (click)="goBackButtonPressed()" style="cursor: pointer">Go Back</a></p>
+</div>
+<p *ngIf="!recipe && !load_error" >
   Loading recipe - please wait a moment
 </p>
+
+<div *ngIf="load_error">
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" area-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    {{ error_text }} - <a [routerLink]="['/recipes']">Back to recipe list</a>
+  </div>
+</div>
+
+
 <div 
   *ngIf="recipe"
   class="recipe panel panel-default"

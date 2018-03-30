@@ -99,7 +99,8 @@ export class RecipeService {
     return this.http
       .get(RECIPE_SERVER + '/v1/recipes.json')
       .toPromise()
-      .then(response => response.json().data as Recipe[]);
+      .then(response => response.json().data as Recipe[])
+      .catch(this.HandleError);
     /*
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -113,7 +114,8 @@ export class RecipeService {
     return this.http
       .get(RECIPE_SERVER + `/v1/recipes/${recipe_id}.json`)
       .toPromise()
-      .then(response => response.json().data as Recipe);
+      .then(response => response.json().data as Recipe)
+      .catch(this.HandleError);
     /*
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -133,7 +135,14 @@ export class RecipeService {
     return this.http
       .put(RECIPE_SERVER + '/v1/recipes.json', recipe)
       .toPromise()
-      .then(response => response.json().data as Recipe);
+      .then(response => response.json().data as Recipe)
+      .catch(this.HandleError);
     // this.recipes.push(recipe);
   }
+
+  private HandleError(error: any): Promise<any> {
+    console.error('Error: ' + error);
+    return Promise.reject(error.message || error);
+  }
+
 }
